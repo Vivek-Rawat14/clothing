@@ -1,0 +1,329 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.navcon {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f0f0f0;
+}
+
+.navbar {
+    background-color: #1c1c1c;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.navbar-brand:hover {
+    color: #e76f61;
+}
+
+.navbar-toggler {
+    border-color: #e76f61;
+}
+
+.navbar-toggler-icon {
+    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="%23e76f61"%3E%3Cpath stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /%3E%3C/svg%3E');
+}
+
+.form-control {
+    background-color: #e1d8d8;
+    border: none;
+    color: #fff;
+    border-radius: 50px;
+    width: 400px;
+    height: 40px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+    font-size: 14px;
+    margin: 0 8px;
+    transition: color 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #e76f61;
+}
+
+.navbar-categories {
+    text-align: center;
+    background-color: #2c2c2c;
+    padding: 10px 0;
+    border-top: 1px solid #e76f61;
+}
+
+.navbar-categories a {
+    color: #fff;
+    font-size: 14px;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+    text-align: center;
+    display: inline-block;
+}
+
+.navbar-categories a:hover {
+    background-color: #e76f61;
+    color: #fff;
+}
+
+@media (max-width: 991px) {
+    .navbar-categories {
+        text-align: center;
+        padding: 10px 5px;
+    }
+
+    .navbar-categories .container {
+        display: flex;
+    }
+
+    .navbar-categories a {
+        display: block;
+        margin: 5px auto;
+        width: auto;
+        padding: 10px 20px;
+    }
+
+    .form-control {
+        padding: 8px 20px;
+        width: 100%;
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 767px) {
+    .navbar-categories {
+        padding: 5px 0;
+    }
+
+    .navbar-categories a {
+        margin: 5px auto;
+        padding: 8px 15px;
+        font-size: 13px;
+    }
+
+    .navbar-nav {
+        margin-left: 40px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .navbar-nav .nav-item {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .navbar-nav .nav-link {
+        width: 100%;
+        padding: 8px 0;
+        text-align: left;
+    }
+}
+.cloth_con{
+    margin-top:4%;
+    align-items: center;
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    letter-spacing: 2px;
+}
+
+.clo{
+    margin: 11px;
+    width: 220px;
+    height: 400px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+}
+
+.prin_clo{
+    display:flex;
+    margin: 12px;
+}
+
+.clo img{
+    width: 100%;
+    height: 280px;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.clo:hover{
+    transform: translateY(-10px);
+    transition: transform 0.3s ease;
+}
+
+.p_name {
+    margin: 12px;
+    font-size: 18px;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #222;
+  }
+  
+  .p_price {
+    font-size: 18px;
+    font-weight: bold;
+    color:rgb(98, 27, 27);
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.view_more{
+    text-align: center;
+    text-decoration: underline;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: larger;
+    font-weight: bolder;
+    color: #24e712;
+}
+
+.view_more:hover {
+    transform: scale(1.1);
+    transition: ease 0.;
+
+}
+
+
+.video-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 12px;
+    margin-top:4%;
+}
+
+.video-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.video-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 20px;
+    text-align: center;
+}
+
+.video-item:hover .overlay {
+    opacity: 1;
+}
+
+.info p {
+    font-size: 20px;
+}
+
+
+.down {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .sa p {
+    color: white;
+    line-height: 23px;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .downpart {
+    background-color: black;
+    color: white;
+  }
+  
+  .sc p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 35px;
+  }
+  
+  .sso i {
+    margin: 6px;
+  }
+
+ 
+  .container_cloth {
+    padding: 50px 0;
+    text-align: center;
+}
+.container_cloth h2 {
+    font-weight: bold;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    color: #343a40;
+}
+.cards {
+    background: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 30px;
+}
+.cards img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+.cards:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.names {
+    padding: 15px;
+    background: #f1f1f1;
+}
+.names p {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #212529;
+}
+a {
+    text-decoration: none;
+}
