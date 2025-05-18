@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Profile - FASHION</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+  font-family: 'Arial', sans-serif;
+  background: url("{% static 'src/gif3.gif' %}") no-repeat right bottom;
+  background-size: 200px 200px; /* Adjust the size as needed */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  color: #fff;
+}
+    .user-card {
+      width: 100%;
+      max-width: 450px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      overflow: hidden;
+    }
+
+    .user-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .user-card .header {
+      background-color: #007bff;
+      color: white;
+      padding: 30px;
+      text-align: center;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      position: relative;
+    }
+
+    .user-card .header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #ffffff;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+
+    .user-card .header h2 {
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .user-card .header p {
+      font-size: 16px;
+      color: #f0f0f0;
+      font-weight: 300;
+    }
+
+    .user-card .content {
+      padding: 25px;
+    }
+
+    .user-card .content p {
+      margin-bottom: 15px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .user-card .content .label {
+      font-weight: bold;
+      color: #007bff;
+    }
+
+    .user-card .content .value {
+      color: #555;
+    }
+
+    .user-card .footer {
+      padding: 20px;
+      background-color: #f9f9f9;
+      text-align: center;
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
+    }
+
+    .user-card .footer .button {
+      padding: 12px 30px;
+      background-color: #007bff;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .user-card .footer .button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 480px) {
+      .user-card {
+        max-width: 95%;
+      }
+
+      .user-card .header h2 {
+        font-size: 22px;
+      }
+
+      .user-card .header p {
+        font-size: 14px;
+      }
+
+      .user-card .content p {
+        font-size: 14px;
+      }
+
+      .user-card .footer .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="user-card">
+    <div class="header">
+      <img src="{% static 'src/lo.jpg' %}" alt="User Profile Picture" />
+      <h2>Jane Smith</h2>
+      <p>jane.smith@example.com</p>
+    </div>
+    <div class="content">
+      <p><span class="label">Phone:</span> <span class="value">7700038020</span></p>
+      <p><span class="label">State:</span> <span class="value">Maharashtra</span></p>
+      <p><span class="label">City:</span> <span class="value">Virar</span></p>
+      <p><span class="label">Address:</span> <span class="value">123, Main Street, XYZ Town</span></p>
+      <p><span class="label">Pincode:</span> <span class="value">11201</span></p>
+    </div>
+    <div class="footer">
+      <button class="button">Log Out</button>
+    </div>
+  </div>
+</body>
+</html>

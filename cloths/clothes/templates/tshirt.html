@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashion - Tshirt</title>
+    <title>Fashion</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -14,146 +14,38 @@
 </head>
 <body>
 
-    <div class="navcon">
-        <nav class="navbar navbar-expand-lg navbar-dark">
-          <div class="container">
-              <a class="navbar-brand" href="#">FASHION</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarResponsive">
-                  <form class="d-flex mx-auto my-2 my-lg-0">
-                      <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                  </form>
-                  <ul class="navbar-nav">
-                      <li class="nav-item">
-                          <a class="nav-link" href="#">
-                              <i class="fa-solid fa-circle-user"></i> Sign In
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="#">
-                              <i class="fa-solid fa-heart"></i> Wishlist
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="#">
-                              <i class="fa-solid fa-bag-shopping"></i> Cart
-                          </a>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-      </nav>
-      
-      <div class="navbar-categories">
-          <div class="container">
-              <a href="mencollection.html">Men</a>
-              <a href="womencollection.html">Women</a>
-              <a href="watch.html">Watch</a>
-              <a href="shoes.html">Shoes</a>
-              <a href="accessoires.html">Accessories</a>
-          </div>
-      </div>
-      
-      </div>
+
   
 
-    <div class="cloth_con">
-        <h2>T-shirt</h2>
-        <div class="con_inner">
-          <div class="prin_clos">
-  
-            <a href="">
-              <div class="clo">
-                <img src="src/a1.jpg">
-                <div class="details">
-                  <p class=p_name>Men's Slogan Printed Short Sleeve T-Shirt</p>
-                  <p class="p_price">Rs 200</p>
-                </div>
-              </div>
-            </a>
+      <div class="container py-5">
+        <div class="store-header">Men-Tshirt</div>
+        <div class="row g-4">
 
-            
-            <a href="">
-                <div class="clo">
-                  <img src="src/a1.jpg">
-                  <div class="details">
-                    <p class=p_name>Men's Slogan Printed Short Sleeve T-Shirt</p>
-                    <p class="p_price">Rs 200</p>
+          {% for i in data %}
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="product-card shadow-sm">
+                      <div class="image-wrapper">
+                        <img src="{% static 'clothimg/' %}{{ i.clothimg }}" alt="Product" class="product-image">
+                      </div>
+                      <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                          <span class="product-price">Rs {{ i.clothprice }}</span>
+                          <i class="fa-regular fa-heart like-icon"></i>
+                        </div>
+                        <p class="product-title">
+                          {{ i.clothname }}
+                        </p>
+                        <a href="productshow/{{i.id}}" class="btn btn-outline-dark btn-sm mt-2 w-100">View Product</a>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </a>
-
-              
-            <a href="">
-                <div class="clo">
-                  <img src="src/a1.jpg">
-                  <div class="details">
-                    <p class=p_name>Men's Slogan Printed Short Sleeve T-Shirt</p>
-                    <p class="p_price">Rs 200</p>
-                  </div>
-                </div>
-              </a>
-
-              
-            <a href="">
-                <div class="clo">
-                  <img src="src/a1.jpg">
-                  <div class="details">
-                    <p class=p_name>Men's Slogan Printed Short Sleeve T-Shirt</p>
-                    <p class="p_price">Rs 200</p>
-                  </div>
-                </div>
-              </a>
-  
-            
-            <a href="">
-              <div class="clo">
-                <img src="src/a1.jpg">
-                <div class="details">
-                  <p class=p_name>Men's Slogan Printed Short Sleeve T-Shirt</p>
-                  <p class="p_price">Rs 200</p>
-                </div>
-              </div>
-            </a>
-  
-            
-            <a href="">
-              <div class="clo">
-                <img src="src/a1.jpg">
-                <div class="details">
-                  <p class=p_name>Men's Slogan Printed Short Sleeve T-Shirt</p>
-                  <p class="p_price">Rs 200</p>
-                </div>
-              </div>
-            </a>
-  
-            
-            <a href="">
-              <div class="clo">
-                <img src="src/a1.jpg">
-                <div class="details">
-                  <p class=p_name>Men's Slogan Printed Short Sleeve T-Shirt</p>
-                  <p class="p_price">Rs 200</p>
-                </div>
-              </div>
-            </a>
-            
-            <a href="">
-              <div class="clo">
-                <img src="src/a1.jpg">
-                <div class="details">
-                  <p class=p_name>Men's Slogan Printed Short Sleeve T-Shirt</p>
-                  <p class="p_price">Rs 200</p>
-                </div>
-              </div>
-            </a>
-          </div>
-
+          
+          {% endfor %}
+             
         </div>
       </div>
-
+      
+      
 
       <div class="downpart" style="margin-top: 4%;">
         <div class="sc d-flex" style="margin-left: 30px; padding: 12px">

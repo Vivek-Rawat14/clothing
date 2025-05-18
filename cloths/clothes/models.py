@@ -4,8 +4,7 @@ from django.db import models
 
 
 category = (('printtshirtm','Printtshirtm'),("shirtm","Shirtm"),("jeansm","Jeansm"),("cargom","Cargom"),
-           ('baggym','Baggam'),('shortsm',"Shortsm"),('printtshirtw','Printtshirtw'),("shirtw","Shirtw"),("kurta","Kurtaw"),("cargow","Cargow"),
-           ('cargow','Cargow'),('shortsw',"Shortsw"),("braclets","Braclets"),("necklace","Necklace"),("caps","Caps"),("rings","Rings"),("sunglasses","Sunglasses"),("bags","Bags"),("watchm","Watchm"),("watchw","Watchw"),('shoes','Shoes'))
+           ('baggym','Baggam'),("fullm","Fullm"),("printtshirtw",'Printtshirtw'),("hoodies","Hoodies"),("shirtw","Shirtw"),("kurta","Kurtaw"),("cargow","Cargow"),('sareesw',"Sareesw"),("braclets","Braclets"),("necklace","Necklace"),("caps","Caps"),("rings","Rings"),("sunglasses","Sunglasses"),("bags","Bags"),("watchm","Watchm"),("watchw","Watchw"),('shoes','Shoes'),('shoesw','Shoesw'))
 
 
 class clothes(models.Model):
@@ -15,3 +14,14 @@ class clothes(models.Model):
     clothesdesc = models.TextField()
     clothimg = models.ImageField()
 
+class users(models.Model):
+    username = models.CharField(max_length=100)
+    password = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.IntegerField()
+    address = models.TextField()
+    pincode = models.IntegerField()
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)    
+    cart = models.CharField(max_length=255,default='[]')
+    likes = models.CharField(max_length=255,default='[]')

@@ -11,6 +11,57 @@
     <link rel="stylesheet" href={% static 'styles.css' %}>
     <link rel="shortcut icon" href="{% static 'src/logo-removebg-preview (2).png' %}" type="image/x-icon">
     <script src={% static 'script.js' %}></script>
+
+ 
+<style>
+  .product-image {
+    height: 270px;
+    object-fit: cover;
+    border-radius: 0;
+  }
+
+  .product-card {
+    transition: transform 0.3s ease;
+  }
+
+  .product-card:hover {
+    transform: scale(1.02);
+  }
+
+  .product-price {
+    color: #000;
+    font-size: 1.1rem;
+  }
+
+  .product-title {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .viewmore-container {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.viewmore {
+  font-size: 22px;
+  color: #111210;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 8px 12px;
+  transition: all 0.3s ease;
+}
+
+.viewmore:hover {
+  color: #a4a216;
+  border-bottom: 1px solid #0056b3;
+  font-family:'Times New Roman', Times, serif ;
+  letter-spacing: 0.5px;
+}
+
+
+</style>
 </head>
 <body>
 
@@ -27,8 +78,8 @@
                 </form>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa-solid fa-circle-user"></i> Sign In
+                        <a class="nav-link" href="users">
+                            <i class="fa-solid fa-circle-user"></i> Profile
                         </a>
                     </li>
                     <li class="nav-item">
@@ -51,13 +102,12 @@
           <a href="">Home</a>
           <a href="mencollection">Men</a>
             <a href="womencollection">Women</a>
-            <a href="watch">Watch</a>
-            <a href="shoes">Shoes</a>
-            <a href="accessoires">Accessories</a>
+            <a href="watchcoll">Watch</a>
+            <a href="shoescoll">Shoes</a>
+            <a href="accessoires">Other Products</a>
         </div>
     </div>
-    
-    </div>
+     </div>
 
     <div id="demo" class="carousel slide" data-bs-ride="carousel" >
         <div class="carousel-indicators">
@@ -90,285 +140,179 @@
         </button>
     </div>
 
-    <div class="cloth_con">
-      <h2>Printed T-shirt</h2>
-      <div class="con_inner">
-        <div class="prin_clo">
-        
-          <a href="">
-            <div class="clo">
-              <img src="{%static 'src/a1.jpg' %}">
-              <div class="details">
-                <p class=p_name>Men's Slogan Printed Short Sleeve T-Shirt</p>
-                <p class="p_price">Rs 200</p>
-              </div>
+
+
+    <div class="containers py-5">
+      <div class="store-header mb-4 fs-3 fw-bold text-center">Men-Shirt</div>
+      <div class="row g-3 px-3">
+        {% for i in data %}
+        {% if forloop.counter <= 4 %}
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <div class="card product-card h-100 shadow-sm border-0">
+            <div class="image-wrapper">
+              <img src="{% static 'clothimg/' %}{{ i.clothimg }}" alt="Product" class="card-img-top product-image">
             </div>
-          </a>
-
-          
-          <a href="">
-            <div class="clo">
-              <img src="{% static "src/a1.jpg" %}">
-              <div class="details">
-                <p class=p_name>Men's Slogan Printed Short Sleeve T-Shirt</p>
-                <p class="p_price">Rs 200</p>
+            <div class="card-body d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="product-price fw-bold">Rs {{ i.clothprice }}</span>
+                <i class="fa-regular fa-heart like-icon"></i>
               </div>
+              <h5 class="product-title mb-2">{{ i.clothname }}</h5>
+              <a href="productshow/{{i.id}}" class="btn btn-outline-dark btn-sm mt-auto w-100">View Product</a>
             </div>
-          </a>
-
-          
-          <a href="">
-            <div class="clo">
-              <img src="{% static "src/a1.jpg" %}">
-              <div class="details">
-                <p class=p_name>Men's Slogan Printed Short Sleeve T-Shirt</p>
-                <p class="p_price">Rs 200</p>
-              </div>
-            </div>
-          </a>
-
-          
-          <a href="">
-            <div class="clo">
-              <img src="{% static "src/a1.jpg" %}">
-              <div class="details">
-                <p class=p_name>Men's Slogan Printed Short Sleeve T-Shirt</p>
-                <p class="p_price">Rs 200</p>
-              </div>
-            </div>
-          </a>
-          
-          <a href="">
-            <div class="clo">
-              <img src="{% static "src/a1.jpg" %}">
-              <div class="details">
-                <p class=p_name>Men's Slogan Printed Short Sleeve T-Shirt</p>
-                <p class="p_price">Rs 200</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <a href="">
-          <p class="view_more">View More</p>
-        </a>
-      </div>
-    </div>
-
-      <div class="cloth_con">
-        <h2>Cargo Pant</h2>
-        <div class="con_inner">
-          <div class="prin_clo">
-
-            <a href="">
-              <div class="clo">
-                <img src="{% static "src/a2.jpg" %}">
-                <div class="details">
-                  <p class=p_name>Men Cotton black Cargo Jeans</p>
-                  <p class="p_price">Rs 200</p>
-                </div>
-              </div>
-            </a>
-  
-            <a href="">
-              <div class="clo">
-                <img src="{% static "src/a2.jpg" %}">
-                <div class="details">
-                  <p class=p_name>Men Cotton black Cargo Jeans</p>
-                  <p class="p_price">Rs 200</p>
-                </div>
-              </div>
-            </a>
-
-            <a href="">
-              <div class="clo">
-                <img src="{% static "src/a2.jpg" %}">
-                <div class="details">
-                  <p class=p_name>Men Cotton black Cargo Jeans</p>
-                  <p class="p_price">Rs 200</p>
-                </div>
-              </div>
-            </a>
-
-            <a href="">
-              <div class="clo">
-                <img src="{% static "src/a2.jpg" %}">
-                <div class="details">
-                  <p class=p_name>Men Cotton black Cargo Jeans</p>
-                  <p class="p_price">Rs 200</p>
-                </div>
-              </div>
-            </a>
-                <a href="">
-              <div class="clo">
-                <img src="{% static "src/a2.jpg" %}">
-                <div class="details">
-                  <p class=p_name>Men Cotton black Cargo Jeans</p>
-                  <p class="p_price">Rs 200</p>
-                </div>
-              </div>
-            </a>
           </div>
-          <a href="">
-            <p class="view_more">View More</p>
-          </a>
         </div>
+        {% endif %}
+        {% endfor %}
       </div>
-
-      <div class="cloth_con">
-        <h2>Women: Printed T-Shirt</h2>
-        <div class="con_inner">
-          <div class="prin_clo">
-  
-            <a href="">
-              <div class="clo">
-                <img src="{% static "src/a3.jpg" %}">
-                <div class="details">
-                  <p class=p_name>Cotton Comfort Plus Size Tee</p>
-                  <p class="p_price">Rs 200</p>
-                </div>
-              </div>
-            </a>
-            
-            <a href="">
-              <div class="clo">
-                <img src="{% static "src/a3.jpg" %}">
-                <div class="details">
-                  <p class=p_name>Cotton Comfort Plus Size Tee</p>
-                  <p class="p_price">Rs 200</p>
-                </div>
-              </div>
-            </a>
-
-            <a href="">
-              <div class="clo">
-                <img src="{% static "src/a3.jpg" %}">
-                <div class="details">
-                  <p class=p_name>Cotton Comfort Plus Size Tee</p>
-                  <p class="p_price">Rs 200</p>
-                </div>
-              </div>
-            </a>
-
-            <a href="">
-              <div class="clo">
-                <img src="{% static "src/a3.jpg" %}">
-                <div class="details">
-                  <p class=p_name>Cotton Comfort Plus Size Tee</p>
-                  <p class="p_price">Rs 200</p>
-                </div>
-              </div>
-            </a>
-            <a href="">
-              <div class="clo">
-                <img src="{% static "src/a3.jpg" %}">
-                <div class="details">
-                  <p class=p_name>Cotton Comfort Plus Size Tee</p>
-                  <p class="p_price">Rs 200</p>
-                </div>
-              </div>
-            </a> 
-          </div>
-          <a href="">
-            <p class="view_more">View More</p>
-          </a>
-        </div>
-      </div>
+    
       
-      <div class="video-gallery">
-        <div class="video-item">
-            <video src="{% static "src/v1.mp4" %}" autoplay loop muted></video>
-            <div class="overlay">
-                <div class="info">
-                    <p>Find Your Feet's Perfect Match.</p>
-                </div>
-            </div>
-        </div>
-        <div class="video-item">
-            <video src="{% static "src/v2.mp4" %}" autoplay loop muted></video>
-            <div class="overlay">
-                <div class="info">
-                    <p>World-class watch made for you</p>
-                </div>
-            </div>
-        </div>
-        <div class="video-item">
-            <video src="{% static "src/v3.mp4" %}" autoplay loop muted></video>
-            <div class="overlay">
-                <div class="info">
-                    <p>Slaying in style with this trendy t-shirt!</p>
-                </div>
-            </div>
-        </div>
-        <div class="video-item">
-            <video src="{% static "src/v4.mp4" %}" autoplay loop muted></video>
-            <div class="overlay">
-                <div class="info">
-                    <p>When in doubt, wear a kurti and slay the day!</p>
-                </div>
-            </div>
-        </div>
+      <div class="viewmore-container">
+        <a href="shirtm" class="viewmore">View More</a>
+      </div>
     </div>
     
-    <div class="cloth_con">
-      <h2>Women: Bags</h2>
-      <div class="con_inner">
-        <div class="prin_clo">
-          <a href="">
-            <div class="clo">
-              <img src="{% static "src/a4.jpg" %}">
-              <div class="details">
-                <p class=p_name>BirdinBag Stylish Multi-Purpose Bag</p>
-                <p class="p_price">Rs 200</p>
-              </div>
+    <div class="containers py-4">
+      <div class="store-header mb-4 fs-3 fw-semibold text-center">Handbags</div>
+      <div class="row g-4">
+        {% for i in bags %}
+        {% if forloop.counter <= 4 %}
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <div class="product-card shadow-sm h-100">
+            <div class="image-wrapper">
+              <img src="{% static 'clothimg/' %}{{ i.clothimg }}" alt="Product" class="product-image w-100" />
             </div>
-          </a>
-
-          <a href="">
-            <div class="clo">
-              <img src="{% static "src/a4.jpg" %}">
-              <div class="details">
-                <p class=p_name>BirdinBag Stylish Multi-Purpose Bag</p>
-                <p class="p_price">Rs 200</p>
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="product-price">Rs {{ i.clothprice }}</span>
+                <i class="fa-regular fa-heart like-icon"></i>
               </div>
+              <p class="product-title mb-2">{{ i.clothname }}</p>
+              <a href="product/{{i.id}}" class="btn btn-outline-dark btn-sm mt-2 w-100">View Product</a>
             </div>
-          </a>
-
-          <a href="">
-            <div class="clo">
-              <img src="{% static "src/a4.jpg" %}">
-              <div class="details">
-                <p class=p_name>BirdinBag Stylish Multi-Purpose Bag</p>
-                <p class="p_price">Rs 200</p>
-              </div>
-            </div>
-          </a>
-
-          <a href="">
-            <div class="clo">
-              <img src="{% static "src/a4.jpg" %}">
-              <div class="details">
-                <p class=p_name>BirdinBag Stylish Multi-Purpose Bag</p>
-                <p class="p_price">Rs 200</p>
-              </div>
-            </div>
-          </a>
-
-          <a href="">
-            <div class="clo">
-              <img src="{% static "src/a4.jpg" %}">
-              <div class="details">
-                <p class=p_name>BirdinBag Stylish Multi-Purpose Bag</p>
-                <p class="p_price">Rs 200</p>
-              </div>
-            </div>
-          </a>
+          </div>
         </div>
-        <a href="">
-          <p class="view_more">View More</p>
-        </a>
+        {% endif %}
+        {% endfor %}
+      </div>
+    
+      
+      <div class="viewmore-container">
+        <a href="bags" class="viewmore">View More</a>
       </div>
     </div>
 
+
+    <div class="video-gallery">
+     
+      <div class="video-item">
+        <a href="shoescoll">
+          <video src="{% static "src/v1.mp4" %}" autoplay loop muted></video>
+          <div class="overlay">
+              <div class="info">
+                  <p>Find Your Feet's Perfect Match.</p>
+              </div>
+          </div>
+        </a>
+      </div>
+     
+      <div class="video-item">
+       <a href="watchcoll">
+        <video src="{% static "src/v2.mp4" %}" autoplay loop muted></video>
+        <div class="overlay">
+            <div class="info">
+                <p>World-class watch made for you</p>
+            </div>
+        </div>
+       </a>
+      </div>
+     
+      <div class="video-item">
+       <a href="tshirt">
+        <video src="{% static "src/v3.mp4" %}" autoplay loop muted></video>
+        <div class="overlay">
+            <div class="info">
+                <p>Slaying in style with this trendy t-shirt!</p>
+            </div>
+        </div>
+       </a>
+      </div>
+     
+      <div class="video-item">
+        <a href="sareew">
+          <video src="{% static "src/v5.mp4" %}" autoplay loop muted></video>
+          <div class="overlay">
+              <div class="info">
+                  <p>When in doubt, wear a kurti and slay the day!</p>
+              </div>
+          </div>
+      </div>
+    </a>
+    </div>
+
+
+    <div class="containers py-4">
+      <div class="store-header mb-4 fs-3 fw-semibold">Rings</div>
+      <div class="row g-4">
+        {% for i in watch %}
+        {% if forloop.counter <= 4 %}
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <div class="product-card h-100">
+            <div class="image-wrapper">
+              <img src="{% static 'clothimg/' %}{{ i.clothimg }}" alt="Product" class="product-image w-100" />
+            </div>
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="product-price">Rs {{ i.clothprice }}</span>
+                <i class="fa-regular fa-heart like-icon"></i>
+              </div>
+              <p class="product-title mb-2">{{ i.clothname }}</p>
+              <a href="product/{{i.id}}" class="btn btn-outline-dark btn-sm mt-2 w-100">View Product</a>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+      
+      <div class="viewmore-container">
+        <a href="rings" class="viewmore">View More</a>
+      </div>
+    </div>
+
+    <div class="containers py-4">
+      <div class="store-header mb-4 fs-3 fw-semibold">Women-Printed Tshirt</div>
+      <div class="row g-4">
+        {% for i in wtsh %}
+        {% if forloop.counter <= 4 %}
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <div class="product-card shadow-sm h-100">
+            <div class="image-wrapper">
+              <img src="{% static 'clothimg/' %}{{ i.clothimg }}" alt="Product" class="product-image w-100" />
+            </div>
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="product-price">Rs {{ i.clothprice }}</span>
+                <i class="fa-regular fa-heart like-icon"></i>
+              </div>
+              <p class="product-title mb-2">{{ i.clothname }}</p>
+              <a href="productshow/{{i.id}}" class="btn btn-outline-dark btn-sm mt-2 w-100">View Product</a>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    
+    
+      <div class="viewmore-container">
+        <a href="printtshirtw" class="viewmore">View More</a>
+      </div>
+  </div>
+    
+    
+    
+    
 
     <div class="downpart" style="margin-top: 4%;">
       <div class="sc d-flex" style="margin-left: 30px; padding: 12px">
@@ -432,5 +376,8 @@
           </div>
       </div>
   </div>
+
 </body>
 </html>
+
+
