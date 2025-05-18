@@ -35,5 +35,6 @@ urlpatterns = [
     path('product/<int:Id>',views.product),
     path('login',views.login),
     path('signup',views.signup),
-    path('users',views.users),
+    path('users',views.userss),
+    path('logout',views.logout),
 ]

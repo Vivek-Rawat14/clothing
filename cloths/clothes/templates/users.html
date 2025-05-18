@@ -140,19 +140,22 @@
   <div class="user-card">
     <div class="header">
       <img src="{% static 'src/lo.jpg' %}" alt="User Profile Picture" />
-      <h2>Jane Smith</h2>
-      <p>jane.smith@example.com</p>
+      <h2>{{userde.0.username}}</h2>
+      <p>{{userde.0.email}}</p>
     </div>
     <div class="content">
-      <p><span class="label">Phone:</span> <span class="value">7700038020</span></p>
-      <p><span class="label">State:</span> <span class="value">Maharashtra</span></p>
-      <p><span class="label">City:</span> <span class="value">Virar</span></p>
-      <p><span class="label">Address:</span> <span class="value">123, Main Street, XYZ Town</span></p>
-      <p><span class="label">Pincode:</span> <span class="value">11201</span></p>
+      <p><span class="label">Phone:</span> <span class="value">{{userde.0.phone}}</span></p>
+      <p><span class="label">State:</span> <span class="value">{{userde.0.state}}</span></p>
+      <p><span class="label">City:</span> <span class="value">{{userde.0.city}}</span></p>
+      <p><span class="label">Address:</span> <span class="value">{{userde.0.address}}</span></p>
+      <p><span class="label">Pincode:</span> <span class="value">{{userde.0.pincode}}</span></p>
     </div>
     <div class="footer">
-      <button class="button">Log Out</button>
+      <a href="logout">
+              <button class="button">Log Out</button>
+      </a>
     </div>
   </div>
 </body>
 </html>
+

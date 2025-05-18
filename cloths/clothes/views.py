@@ -1,5 +1,5 @@
 from django.urls import path
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import clothes,users
 # View functions
 def homepage(req):
@@ -157,10 +157,38 @@ def product(req,Id):
     return render(req,'product.html',context={'data':cd})
 
 def login(req):
-    return render(req,'login.html')
+    if req.method == 'POST':
+        phonenumber = req.POST['phone']
+        passwordl = req.POST['password']
+        try:
+            s =users.objects.get(phone = phonenumber,password = passwordl)
+            if(s):
+                return redirect('/')
+        except Exception as e:
+            return render(req, 'login.html', context={"error": "Something went wrong, try again"})
+    return render(req, 'login.html')
 
 def signup(req):
+    if req.method=='POST':
+        name = req.POST['name']
+        email = req.POST['email']
+        password = req.POST['password']
+        repassword = req.POST['re_password']
+        state = req.POST['state']
+        city = req.POST['city']
+        pincode = req.POST['pincode']
+        address = req.POST['address']
+        phone  = req.POST['phone']
+
+        users.objects.create(username = name,password=password,email=email,phone =phone,address= address,city=city,pincode=pincode,state=state,repassword=repassword  )
+        return redirect('/login')
+    
     return render(req,'signup.html')
 
-def users(req):
-    return render(req,'users.html')
+def userss(req):
+    db  = users.objects.all()
+    cd = list(db)
+    return render(req,'users.html',context={"userde":db})
+
+def logout(req):
+    return redirect('/login')
