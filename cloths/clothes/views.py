@@ -1,11 +1,13 @@
 from django.urls import path
 from django.shortcuts import render,redirect
 import json
+import itertools
 from .models import clothes,users
 # View functions
 def homepage(req):
-    if not req.session['user']:
-        redirect("/login")
+    print(req.session.keys())
+    # if "user" not in req.session:
+    #     return redirect("/login")
     db = clothes.objects.filter(clothescat='shirtm').values()
     cd = list(db)
     bb = clothes.objects.filter(clothescat='printtshirtw').values()
@@ -14,7 +16,9 @@ def homepage(req):
     vd = list(dd)
     b = clothes.objects.filter(clothescat='bags').values()
     d = list(b)
-    return render(req, 'index.html',context={'data':cd,'wtsh':cc,'watch':vd,'bags':d})
+    allDb  = clothes.objects.values()
+    print(allDb[0])
+    return render(req, 'index.html',context={'data':cd,'wtsh':cc,'watch':vd,'bags':d,'all':allDb})
 
 def mencollection(req):
     return render(req, 'mencollection.html')
@@ -167,9 +171,12 @@ def login(req):
         passwordl = req.POST['password']
         try:
             s =users.objects.get(phone = phonenumber,password = passwordl)
+            print(s)
             if(s):
-                req.session['user'] = json.loads(s)
+                req.session['user'] = s.objects().values()['username']
                 return redirect('/')
+            else :
+                raise Exception('user Not found')
         except Exception as e:
             return render(req, 'login.html', context={"error": "Something went wrong, try again"})
     return render(req, 'login.html')
