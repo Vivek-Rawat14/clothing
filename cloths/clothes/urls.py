@@ -37,4 +37,6 @@ urlpatterns = [
     path('signup',views.signup),
     path('users',views.userss),
     path('logout',views.logout),
+    path('carts',views.carts),
+    path('like',views.like)
 ]

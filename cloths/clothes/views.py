@@ -1,8 +1,11 @@
 from django.urls import path
 from django.shortcuts import render,redirect
+import json
 from .models import clothes,users
 # View functions
 def homepage(req):
+    if not req.session['user']:
+        redirect("/login")
     db = clothes.objects.filter(clothescat='shirtm').values()
     cd = list(db)
     bb = clothes.objects.filter(clothescat='printtshirtw').values()
@@ -157,12 +160,15 @@ def product(req,Id):
     return render(req,'product.html',context={'data':cd})
 
 def login(req):
+    req.session.set_test_cookie()
+
     if req.method == 'POST':
         phonenumber = req.POST['phone']
         passwordl = req.POST['password']
         try:
             s =users.objects.get(phone = phonenumber,password = passwordl)
             if(s):
+                req.session['user'] = json.loads(s)
                 return redirect('/')
         except Exception as e:
             return render(req, 'login.html', context={"error": "Something went wrong, try again"})
@@ -192,3 +198,9 @@ def userss(req):
 
 def logout(req):
     return redirect('/login')
+
+def carts(req):
+    return render(req,'carts.html')
+
+def like(req):
+    return render(req,'like.html')
