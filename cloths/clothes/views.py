@@ -1,3 +1,4 @@
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import path
 from django.shortcuts import render,redirect
 import json
@@ -5,21 +6,20 @@ import itertools
 from .models import clothes,users
 # View functions
 def homepage(req):
-    print(req.session.keys())
-    # if "user" not in req.session:
-    #     return redirect("/login")
-    db = clothes.objects.filter(clothescat='shirtm').values()
-    cd = list(db)
-    bb = clothes.objects.filter(clothescat='printtshirtw').values()
-    cc = list(bb)
-    dd = clothes.objects.filter(clothescat='rings').values()
-    vd = list(dd)
-    b = clothes.objects.filter(clothescat='bags').values()
-    d = list(b)
-    allDb  = clothes.objects.values()
-    print(allDb[0])
-    return render(req, 'index.html',context={'data':cd,'wtsh':cc,'watch':vd,'bags':d,'all':allDb})
+    if 'user' not in req.session:
+        return redirect('/login')  # Redirect to login if not logged in
 
+    cd = list(clothes.objects.filter(clothescat='shirtm').values())
+    cc = list(clothes.objects.filter(clothescat='printtshirtw').values())
+    vd = list(clothes.objects.filter(clothescat='rings').values())
+    d = list(clothes.objects.filter(clothescat='bags').values())
+
+    return render(req, 'index.html', context={
+        'data': cd,
+        'wtsh': cc,
+        'watch': vd,
+        'bags': d
+    })
 def mencollection(req):
     return render(req, 'mencollection.html')
 
@@ -167,18 +167,20 @@ def login(req):
     req.session.set_test_cookie()
 
     if req.method == 'POST':
-        phonenumber = req.POST['phone']
-        passwordl = req.POST['password']
+        phonenumber = req.POST.get('phone')
+        passwordl = req.POST.get('password')
         try:
-            s =users.objects.get(phone = phonenumber,password = passwordl)
-            print(s)
-            if(s):
-                req.session['user'] = s.objects().values()['username']
+            s = users.objects.get(phone=phonenumber)
+            if s.password == passwordl:
+                req.session['user'] = s.username  # Store username in session
                 return redirect('/')
-            else :
-                raise Exception('user Not found')
-        except Exception as e:
+            else:
+                return render(req, 'login.html', context={"error": "Invalid password"})
+        except users.DoesNotExist:
+            return render(req, 'login.html', context={"error": "User not found"})
+        except Exception:
             return render(req, 'login.html', context={"error": "Something went wrong, try again"})
+
     return render(req, 'login.html')
 
 def signup(req):
@@ -199,9 +201,15 @@ def signup(req):
     return render(req,'signup.html')
 
 def userss(req):
-    db  = users.objects.all()
-    cd = list(db)
-    return render(req,'users.html',context={"userde":db})
+    if 'user' not in req.session:
+        return redirect('/login')
+
+    username = req.session['user']
+    try:
+        user_data = users.objects.filter(username=username).values()
+        return render(req, 'users.html', context={"userde": user_data})
+    except users.DoesNotExist:
+        return render(req, 'users.html', context={"error": "User not found"})
 
 def logout(req):
     return redirect('/login')
@@ -209,5 +217,52 @@ def logout(req):
 def carts(req):
     return render(req,'carts.html')
 
-def like(req):
-    return render(req,'like.html')
+
+def search(req, item):
+    db = clothes.objects.all().values()
+    filterdb = []
+    for i in db:
+        if i['clothname'].lower().find(item) != -1:
+            filterdb.append(i)
+    return render(req, 'search.html', context={"data": filterdb})
+
+def like(req, Id):
+    if 'user' not in req.session:
+        return redirect('/login')
+
+    try:
+        cloth = clothes.objects.get(id=Id)
+        cloth.likes += 1
+        cloth.save()
+        return redirect('/')
+    except clothes.DoesNotExist:
+        return render(req, 'like.html', context={"error": "Cloth not found"})
+
+
+    
+def addtocart(req, Id):
+    if 'user' not in req.session:
+        return redirect('/login')
+
+    try:
+        cloth = clothes.objects.get(id=Id)
+        if 'cart' not in req.session:
+            req.session['cart'] = []
+        req.session['cart'].append(cloth.id)
+        req.session.modified = True
+        return redirect('/')
+    except clothes.DoesNotExist:
+        return render(req, 'carts.html', context={"error": "Cloth not found"})  
+    
+def removefromcart(req, Id):
+    if 'user' not in req.session:
+        return redirect('/login')
+
+    try:
+        cloth = clothes.objects.get(id=Id)
+        if 'cart' in req.session and cloth.id in req.session['cart']:
+            req.session['cart'].remove(cloth.id)
+            req.session.modified = True
+        return redirect('/carts')
+    except clothes.DoesNotExist:
+        return render(req, 'carts.html', context={"error": "Cloth not found"})

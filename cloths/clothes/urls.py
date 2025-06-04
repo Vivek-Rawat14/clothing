@@ -38,5 +38,8 @@ urlpatterns = [
     path('users',views.userss),
     path('logout',views.logout),
     path('carts',views.carts),
-    path('like',views.like)
+    path('search/<str:item>/', views.search),
+   path('like/<int:Id>/', views.like),
+    path('addtocart/<int:Id>/', views.addtocart),
+    path('removefromcart/<int:Id>/', views.removefromcart),
 ]
