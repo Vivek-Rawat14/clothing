@@ -37,9 +37,7 @@ urlpatterns = [
     path('signup',views.signup),
     path('users',views.userss),
     path('logout',views.logout),
-    path('carts',views.carts),
     path('search/<str:item>/', views.search),
-   path('like/<int:Id>/', views.like),
-    path('addtocart/<int:Id>/', views.addtocart),
-    path('removefromcart/<int:Id>/', views.removefromcart),
+    path('addlikeitem/<int:Id>',views.addlikeitem),
+    path('like',views.like)
 ]

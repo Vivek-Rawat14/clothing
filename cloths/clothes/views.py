@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import path
 from django.shortcuts import render,redirect
+from . import models
 import json
 import itertools
 from .models import clothes,users
@@ -226,43 +227,17 @@ def search(req, item):
             filterdb.append(i)
     return render(req, 'search.html', context={"data": filterdb})
 
-def like(req, Id):
-    if 'user' not in req.session:
-        return redirect('/login')
-
-    try:
-        cloth = clothes.objects.get(id=Id)
-        cloth.likes += 1
-        cloth.save()
-        return redirect('/')
-    except clothes.DoesNotExist:
-        return render(req, 'like.html', context={"error": "Cloth not found"})
-
 
     
-def addtocart(req, Id):
-    if 'user' not in req.session:
-        return redirect('/login')
+def addlikeitem(req,Id):
+    username = req.session['user']
+    users = models.users.objects.get(username=username)
+    likeitems = json.loads(users.likes)
+    likeitems.append(Id)
+    users.likes=likeitems
+    users.save()
+    return redirect('/like') 
 
-    try:
-        cloth = clothes.objects.get(id=Id)
-        if 'cart' not in req.session:
-            req.session['cart'] = []
-        req.session['cart'].append(cloth.id)
-        req.session.modified = True
-        return redirect('/')
-    except clothes.DoesNotExist:
-        return render(req, 'carts.html', context={"error": "Cloth not found"})  
-    
-def removefromcart(req, Id):
-    if 'user' not in req.session:
-        return redirect('/login')
-
-    try:
-        cloth = clothes.objects.get(id=Id)
-        if 'cart' in req.session and cloth.id in req.session['cart']:
-            req.session['cart'].remove(cloth.id)
-            req.session.modified = True
-        return redirect('/carts')
-    except clothes.DoesNotExist:
-        return render(req, 'carts.html', context={"error": "Cloth not found"})
+def like(req):
+    db = users.objects.filter
+    return render(req,'like.html')
