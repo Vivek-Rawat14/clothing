@@ -38,6 +38,6 @@ urlpatterns = [
     path('users',views.userss),
     path('logout',views.logout),
     path('search/<str:item>/', views.search),
-    path('addlikeitem/<int:Id>',views.addlikeitem),
+  path('addlikeitem/<int:Id>/', views.addlikeitem, name='addlikeitem'),
     path('like',views.like)
 ]

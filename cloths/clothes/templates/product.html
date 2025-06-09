@@ -5,8 +5,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Large Product Card</title>
-  <style>
+  <title></title>
+    <style>
     .product-card {
         box-sizing: border-box;
       display: flex;
@@ -18,7 +18,9 @@
       overflow: hidden;
       padding: 40px;
     }
-
+    a{
+      text-decoration: none;
+    }
     .product-image {
       flex: 1;
       display: flex;
@@ -70,6 +72,15 @@
       margin-bottom: 24px;
     }
 
+    .sizes button {
+      padding: 10px 18px;
+      margin-right: 12px;
+      font-size: 1.1rem;
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      cursor: pointer;
+    }
 
     .actions {
       display: flex;
@@ -136,7 +147,9 @@
 <a href="">
   <button class="cart-btn">Buy</button>
 </a>
-        <button class="wishlist-btn">Wishlist</button>
+            <a href="addlikeitem/{{i.id}}">
+          <button class="wishlist-btn">Add to Wishlist</button>
+          </a>
       </div>
     </div>
   </div>

@@ -239,5 +239,19 @@ def addlikeitem(req,Id):
     return redirect('/like') 
 
 def like(req):
-    db = users.objects.filter
-    return render(req,'like.html')
+    if 'user' not in req.session:
+        return redirect('/homepage')
+    
+    username = req.session['user']
+    try:
+        user = users.objects.get(username=username)
+
+        try:
+            liked_ids = json.loads(user.likes)  # convert string to list
+        except json.JSONDecodeError:
+            liked_ids = []
+
+        liked_items = clothes.objects.filter(id__in=liked_ids)
+        return render(req, 'like.html', context={'data': liked_items})
+    except users.DoesNotExist:
+        return redirect('/login')

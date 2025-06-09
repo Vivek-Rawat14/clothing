@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Large Product Card</title>
+  <title></title>
   <style>
     .product-card {
         box-sizing: border-box;
@@ -17,7 +17,9 @@
       overflow: hidden;
       padding: 40px;
     }
-
+    a{
+      text-decoration: none;
+    }
     .product-image {
       flex: 1;
       display: flex;
@@ -150,12 +152,14 @@
 
       <div class="actions">
         <button class="cart-btn">Buy</button>
-        <a href="">
-          <button class="wishlist-btn">Add to Wishlist</button>
-          </a>
+       <a href="addlikeitem/{{i.id}}">
+        <button class="wishlist-btn">Add to Wishlist</button>
+       </a>
       </div>
     </div>
   </div>
 
 </body>
 </html>
+
+
