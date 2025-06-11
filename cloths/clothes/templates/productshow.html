@@ -132,27 +132,26 @@
 
   <div class="product-card">
     <div class="product-image">
-      <img src="{% static 'clothimg/' %}{{ data.0.clothimg }}">
+      <img src="{% static 'clothimg/' %}{{ data.clothimg }}">
     </div>
 
     <div class="product-info">
       <div>
-        <h2>{{data.0.clothname}}</h2>
+        <h2>{{data.clothname}}</h2>
         <p class="description">
-        {{data.0.clothesdesc}}
+        {{data.clothesdesc}}
         </p>
-        <p class="price">Rs {{data.0.clothprice}}</p>
+        <p class="price">Rs {{data.clothprice}}</p>
         <div class="sizes">
-          <button>S</button>
-          <button>M</button>
-          <button>L</button>
-          <button>XL</button>
+          {%for i in sizes%}
+            {{i}}
+          {%endfor%}
         </div>
       </div>
 
       <div class="actions">
         <button class="cart-btn">Buy</button>
-       <a href="addlikeitem/{{i.id}}">
+       <a href="/addlikeitem/{{data.id}}">
         <button class="wishlist-btn">Add to Wishlist</button>
        </a>
       </div>

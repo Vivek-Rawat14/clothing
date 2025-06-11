@@ -13,6 +13,7 @@ class clothes(models.Model):
     clothescat = models.CharField(choices=category,max_length=200)
     clothesdesc = models.TextField()
     clothimg = models.ImageField()
+    clothsize = models.CharField(max_length=100,default=[],null=True)
 
 class users(models.Model):
     username = models.CharField(max_length=100)

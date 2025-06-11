@@ -150,9 +150,10 @@ def watchcoll(req):
     return render(req,'watchcoll.html')
 
 def productshow(req,Id):
-    db = clothes.objects.filter(id=Id).values()
-    cd = list(db)
-    return render(req,'productshow.html',context={'data':cd})
+    db = clothes.objects.get(id=Id)
+    sizes = db.clothsize.strip("[]").split(",")
+    print(type(sizes),sizes)
+    return render(req,'productshow.html',context={'data':db,'sizes':sizes})
 
 def productshoes(req,Id):
     db = clothes.objects.filter(id=Id).values()

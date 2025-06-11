@@ -143,13 +143,11 @@
         {{data.0.clothesdesc}}
         </p>
         <p class="price">Rs {{data.0.clothprice}}</p>
-      <div class="actions">
-<a href="">
-  <button class="cart-btn">Buy</button>
-</a>
-            <a href="addlikeitem/{{i.id}}">
-          <button class="wishlist-btn">Add to Wishlist</button>
-          </a>
+        <div class="actions">
+        <button class="cart-btn">Buy</button>
+       <a href="/addlikeitem/{{data.0.id}}">
+        <button class="wishlist-btn">Add to Wishlist</button>
+       </a>
       </div>
     </div>
   </div>

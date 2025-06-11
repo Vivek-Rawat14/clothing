@@ -160,7 +160,7 @@
 </head>
 <body>
   <div class="container">
-    <h2>My Wishlist</h2>
+    <h2>Your  Wishlist</h2>
 
     {% if data %}
       {% for product in data %}
@@ -171,7 +171,7 @@
             <div class="product-desc">{{ product.clothesdesc|default:"No description available." }}</div>
             <div class="product-price">₹{{ product.clothprice }}</div>
             <div class="btn-group">
-              <a href="#" class="btn-view">View Details</a>
+              <a href="pro" class="btn-view">View Details</a>
               <form method="post" action="" style="margin:0;">
                 {% csrf_token %}
                 <button type="submit" class="btn-remove">Remove</button>
