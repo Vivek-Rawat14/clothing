@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     let searchinput = document.getElementById('search');
     let searchbutton = document.getElementById('searchbutton');

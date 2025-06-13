@@ -155,16 +155,6 @@ def productshow(req,Id):
     print(type(sizes),sizes)
     return render(req,'productshow.html',context={'data':db,'sizes':sizes})
 
-def productshoes(req,Id):
-    db = clothes.objects.filter(id=Id).values()
-    cd = list(db)
-    return render(req,'productshoes.html',context={'data':cd})
-
-def product(req,Id):
-    db = clothes.objects.filter(id=Id).values()
-    cd = list(db)
-    return render(req,'product.html',context={'data':cd})
-
 def login(req):
     req.session.set_test_cookie()
 
@@ -239,6 +229,28 @@ def addlikeitem(req,Id):
     users.save()
     return redirect('/like') 
 
+
+def addremoveitem(request, Id):
+    if request.method == 'POST':
+        username = request.session.get('user')
+        if not username:
+            return redirect('/login')
+
+        user = models.users.objects.get(username=username)
+
+        likeitems = json.loads(user.likes) if user.likes else []
+
+        try:
+            likeitems.remove(Id)
+        except ValueError:
+            pass  # item was not in list, ignore
+
+        user.likes = json.dumps(likeitems)
+        user.save()
+
+    return redirect('/like')
+
+
 def like(req):
     if 'user' not in req.session:
         return redirect('/homepage')
@@ -256,3 +268,96 @@ def like(req):
         return render(req, 'like.html', context={'data': liked_items})
     except users.DoesNotExist:
         return redirect('/login')
+    
+
+
+
+
+def addbuyitem(req, Id):
+    if 'user' not in req.session:
+        return redirect('/login')
+
+    size = req.POST.get('size')
+    qty = req.POST.get('qty')
+
+    username = req.session['user']
+    user = models.users.objects.get(username=username)
+
+    # Load existing cart
+    try:
+        cartitems = json.loads(user.cart)
+    except (TypeError, json.JSONDecodeError):
+        cartitems = []
+
+    # Ensure all items are dictionaries
+    new_cart = []
+    for item in cartitems:
+        if isinstance(item, int):
+            # convert old int items to new dict format with default size/qty
+            new_cart.append({"id": item, "size": "Default", "qty": 1})
+        else:
+            new_cart.append(item)
+
+    # Check if item already exists with same size
+    found = False
+    for item in new_cart:
+        if item["id"] == Id and item["size"] == size:
+            item["qty"] = str(int(item["qty"]) + int(qty))
+            found = True
+            break
+
+    if not found:
+        new_cart.append({
+            "id": Id,
+            "size": size,
+            "qty": qty
+        })
+
+    user.cart = json.dumps(new_cart)
+    user.save()
+    return redirect('/carts')
+
+
+def carts(req):
+
+
+    if 'user' not in req.session:
+        return redirect('/homepage')
+
+    username = req.session['user']
+    try:
+        user = models.users.objects.get(username=username)
+        try:
+            cart_data = json.loads(user.cart)
+        except json.JSONDecodeError:
+            cart_data = []
+
+        cart_items = []
+        for item in cart_data:
+            try:
+                product = models.clothes.objects.get(id=item["id"])
+                cart_items.append({
+                    "product": product,
+                    "size": item.get("size", ""),
+                    "qty": item.get("qty", 1)
+                })
+            except models.clothes.DoesNotExist:
+                continue
+
+        return render(req, 'carts.html', context={'data': cart_items})
+    except models.users.DoesNotExist:
+        return redirect('/login')
+    
+
+
+def about(req):
+    return render(req,'about.html')
+
+def privacy(req):
+    return render(req,'privacy.html')
+
+def help(req):
+    return render(req,'help.html')
+
+def terms(req):
+    return render(req,'term.html')

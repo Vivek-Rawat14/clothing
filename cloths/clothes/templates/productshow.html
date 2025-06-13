@@ -4,161 +4,389 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title></title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href={% static 'styles.css' %}>
+    <link rel="shortcut icon" href="{% static 'src/logo-removebg-preview (2).png' %}" type="image/x-icon">
+    <script src={% static 'script.js' %}></script>
   <style>
-    .product-card {
-        box-sizing: border-box;
+   
+  
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f6f9;
+      color: #333;
+    }
+
+    .containe {
+      max-width: 1000px;
+      margin: 50px auto;
+      background: white;
       display: flex;
-      background: #fff;
       border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-      max-width: 1400px;
-      width: 100%;
       overflow: hidden;
-      padding: 40px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      flex-wrap: wrap;
     }
-    a{
-      text-decoration: none;
-    }
-    .product-image {
-      flex: 1;
+
+    .left {
+      flex: 1 1 50%;
+      background: #fafafa;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 40px;
-      
-      border-radius: 16px;
+      padding: 30px;
     }
 
-    .product-image img {
-      width: 400px;
-      object-fit: cover;
+    .left img {
+      max-width: 100%;
+      border-radius: 10px;
+      object-fit: contain;
     }
 
-    .product-info {
-      flex: 2;
+    .right {
+      flex: 1 1 50%;
       padding: 40px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
-    .product-info h2 {
-      font-size: 2.5rem;
+    h2 {
+      font-size: 2rem;
       color: #222;
-      margin: 0 0 24px;
+      margin-bottom: 15px;
     }
 
-    .description {
-  font-size: 1.25rem;
-  color: #555;
-  line-height: 1.7;
-  max-height: 200px;
-  overflow-y: auto;
-  margin-bottom: 24px;
-  padding-right: 12px;
-  scrollbar-width: none;
-}
+    .desc {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 20px;
+      max-height: 120px;
+      overflow-y: auto;
+    }
 
     .price {
-      font-size: 2rem;
-      color: #b12704;
+      font-size: 1.8rem;
+      color: #e63946;
       font-weight: bold;
-      margin-bottom: 24px;
+      margin: 15px 0;
     }
 
-    .sizes {
-      margin-bottom: 24px;
+    .sizes p {
+      font-weight: 600;
+      margin-bottom: 8px;
     }
 
-    .sizes button {
-      padding: 10px 18px;
-      margin-right: 12px;
-      font-size: 1.1rem;
-      background: #f0f0f0;
+    .size-button {
+      padding: 10px 16px;
+      margin: 4px;
+      background: #f1f1f1;
       border: 1px solid #ccc;
       border-radius: 8px;
       cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .size-button:hover,
+    .size-button.selected {
+      background-color: #007bff;
+      color: white;
+      border-color: #007bff;
+    }
+
+    .quantity {
+      margin: 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .qty-btn {
+      padding: 10px;
+      background: #eee;
+      border: none;
+      font-size: 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+    }
+
+    .qty-btn:hover {
+      background: #ddd;
+    }
+
+    .qty-input {
+      width: 60px;
+      padding: 8px;
+      text-align: center;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
     }
 
     .actions {
       display: flex;
-      gap: 20px;
+      gap: 15px;
       margin-top: 30px;
     }
 
     .actions button {
       flex: 1;
-      padding: 16px 20px;
+      padding: 14px;
+      font-size: 1.1rem;
+      font-weight: bold;
       border: none;
       border-radius: 10px;
-      font-size: 1.25rem;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
       cursor: pointer;
+      transition: background 0.3s;
     }
 
     .cart-btn {
-      background: #007bff;
+      background-color: #28a745;
+      color: white;
+    }
+
+    .cart-btn:hover {
+      background-color: #218838;
     }
 
     .wishlist-btn {
-      background: #222;
+      background-color: #6c757d;
+      color: white;
     }
 
-    .actions button:hover {
-      opacity: 0.9;
+    .wishlist-btn:hover {
+      background-color: #5a6268;
     }
 
-    @media (max-width: 1024px) {
-      .product-card {
+    @media (max-width: 768px) {
+      .container {
         flex-direction: column;
       }
 
-      .actions {
-        flex-direction: column;
-      }
-
-      .actions button {
-        width: 100%;
+      .right {
+        padding: 20px;
       }
     }
   </style>
+  
 </head>
 <body>
 
-  <div class="product-card">
-    <div class="product-image">
-      <img src="{% static 'clothimg/' %}{{ data.clothimg }}">
-    </div>
+      <div class="navcon">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">FASHION</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+          <form class="d-flex mx-auto my-2 my-lg-0" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search..." id="search">
+               <button class="btn btn-primary" type="submit" id="searchbutton">Search</button>
+        </form>
 
-    <div class="product-info">
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="users">
+                            <i class="fa-solid fa-circle-user"></i> Profile
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="like">
+                            <i class="fa-solid fa-heart"></i> Wishlist
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="carts">
+                            <i class="fa-solid fa-bag-shopping"></i> Cart
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="navbar-categories">
+        <div class="container">
+          <a href="">Home</a>
+          <a href="mencollection">Men</a>
+            <a href="womencollection">Women</a>
+            <a href="watchcoll">Watch</a>
+            <a href="shoescoll  ">Shoes</a>
+            <a href="accessoires">Other Products</a>
+        </div>
+    </div>
+     </div>
+
+
+
+  <div class="containe">
+    <div class="left">
+      <img src="{% static 'clothimg/' %}{{ data.clothimg }}" alt="{{ data.clothname }}">
+    </div>
+    <div class="right">
       <div>
-        <h2>{{data.clothname}}</h2>
-        <p class="description">
-        {{data.clothesdesc}}
-        </p>
-        <p class="price">Rs {{data.clothprice}}</p>
-        <div class="sizes">
-          {%for i in sizes%}
-            {{i}}
-          {%endfor%}
+        <h2>{{ data.clothname }}</h2>
+        <p class="desc">{{ data.clothesdesc }}</p>
+        <p class="price">Rs {{ data.clothprice }}</p>
+
+ {% if sizes %}
+  <div class="sizes">
+    {% for i in sizes %}
+      {% if i %}
+        <button type="button" class="size-button" onclick="selectSize(this, '{{ i }}')">{{ i }}</button>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}
+
+
+        <div class="quantity">
+          <span>Qty:</span>
+          <button class="qty-btn" type="button" onclick="adjustQty(-1)">−</button>
+          <input id="qty" class="qty-input" type="number" value="1" min="1">
+          <button class="qty-btn" type="button" onclick="adjustQty(1)">+</button>
         </div>
       </div>
 
-      <div class="actions">
-        <button class="cart-btn">Buy</button>
-       <a href="/addlikeitem/{{data.id}}">
-        <button class="wishlist-btn">Add to Wishlist</button>
-       </a>
-      </div>
+      <form action="/addbuyitem/{{ data.id }}/" method="POST" onsubmit="return prepareCartData()">
+        {% csrf_token %}
+        <input type="hidden" name="size" id="selectedSize">
+        <input type="hidden" name="qty" id="selectedQty">
+
+        <div class="actions">
+          <button type="submit" class="cart-btn">Add to Cart</button>
+          <a href="/addlikeitem/{{ data.id }}"><button type="button" class="wishlist-btn">Add to Wishlist</button></a>
+        </div>
+      </form>
     </div>
   </div>
+
+
+    <div class="downpart" style="margin-top: 4%;">
+      <div class="sc d-flex" style="margin-left: 30px; padding: 12px">
+          <p class="logo">FASHION</p>
+      </div>
+      <div class="down">
+          <div class="infoserv">
+              <h3>Company</h3>
+              <div class="sa">
+                  <a href="about">
+                      <p>About Us</p>
+                  </a>
+                  <a href="help">
+                      <p>Help & Support</p>
+                  </a>
+                  <a href="term">
+                      <p>Terms & Conditions</p>
+                  </a>
+                  <a href="privacy">
+                      <p>Privacy Policy</p>
+                  </a>
+              </div>
+          </div>
+
+          <div class="contact">
+              <h3>Contact</h3>
+              <div class="sa">
+                  <div class="sso d-flex">
+                      <i class="fa-solid fa-phone"></i>
+                      <p>025-025-0215</p>
+                  </div>
+                  <div class="sso d-flex">
+                      <i class="fa-solid fa-envelope-open"></i>
+                      <p>fashion@gmail.com</p>
+                  </div>
+              </div>
+          </div>
+
+          <div class="social">
+              <h3>Follow Us</h3>
+              <div class="sa sss">
+                  <a href="https://www.instagram.com/accounts/login/?hl=en" style="text-decoration: none; color: white">
+                      <div class="sso d-flex">
+                          <i class="fa-brands fa-instagram"></i>
+                          <p>Instagram</p>
+                      </div>
+                  </a>
+                  <a href="https://www.facebook.com/" style="text-decoration: none; color: white">
+                      <div class="sso d-flex">
+                          <i class="fa-brands fa-facebook"></i>
+                          <p>Facebook</p>
+                      </div>
+                  </a>
+                  <a href="https://x.com/login" style="text-decoration: none; color: white">
+                      <div class="sso d-flex">
+                          <i class="fa-brands fa-twitter"></i>
+                          <p>Twitter</p>
+                      </div>
+                  </a>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
 
 </body>
 </html>
 
 
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let searchinput = document.getElementById('search');
+    let searchbutton = document.getElementById('searchbutton');
+
+    searchbutton.addEventListener("click", (event) => {
+        event.preventDefault();
+        let query = encodeURIComponent(searchinput.value.trim());
+        if (query) {
+            window.location.href = `${window.location.origin}/search/${query}/`;
+        }
+    });
+});
+
+  function selectSize(button, size) {
+    document.querySelectorAll('.size-button').forEach(btn => btn.classList.remove('selected'));
+    button.classList.add('selected');
+    document.getElementById('selectedSize').value = size;
+  }
+
+  function adjustQty(change) {
+    const input = document.getElementById('qty');
+    let val = parseInt(input.value) || 1;
+    val = Math.max(1, val + change);
+    input.value = val;
+  }
+
+  function prepareCartData() {
+    const selectedSize = document.getElementById('selectedSize').value;
+    const qty = document.getElementById('qty').value;
+
+    if (!selectedSize) {
+      alert("Please select a size.");
+      return false;
+    }
+
+    document.getElementById('selectedQty').value = qty;
+    return true;
+  }
+
+  function showBuyMessage() {
+    alert("Thanks for buying! Product added to your cart.");
+    return true; // continue with form submit
+  }
+
+  function showWishlistMessage() {
+    alert("Item added to your wishlist!");
+    return true; // continue with redirect
+  }
+</script>
