@@ -11,275 +11,232 @@
     <link rel="stylesheet" href={% static 'styles.css' %}>
     <link rel="shortcut icon" href="{% static 'src/logo-removebg-preview (2).png' %}" type="image/x-icon">
     <script src={% static 'script.js' %}></script>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+ <style>
+    body {
+      background-color: #f2f4f6;
+      font-family: 'Segoe UI', sans-serif;
     }
 
-    .ap {
-  font-family: 'Arial', sans-serif;
-  background: url("{% static 'src/gif3.gif' %}") no-repeat right bottom;
-  background-size: 200px 200px; /* Adjust the size as needed */
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-  color: #fff;
-}
-    .user-card {
-      width: 100%;
-      max-width: 450px;
-      background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    .profile-page {
+      max-width: 960px;
+      margin: 50px auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.05);
       overflow: hidden;
     }
 
-    .user-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    .user-card .header {
-      background-color: #007bff;
-      color: white;
+    .profile-header {
+      display: flex;
+      align-items: center;
       padding: 30px;
-      text-align: center;
-      border-top-left-radius: 16px;
-      border-top-right-radius: 16px;
-      position: relative;
+      background-color: #fff;
+      border-bottom: 1px solid #e0e0e0;
     }
 
-    .user-card .header img {
+    .profile-header img {
       width: 120px;
       height: 120px;
       border-radius: 50%;
-      border: 4px solid #ffffff;
       object-fit: cover;
+      margin-right: 30px;
+      border: 3px solid #dee2e6;
+    }
+
+    .profile-header h4 {
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .profile-header p {
+      color: #6c757d;
+      margin: 0;
+    }
+
+    .profile-body {
+      padding: 30px;
+    }
+
+    .info-row {
       margin-bottom: 20px;
     }
 
-    .user-card .header h2 {
-      font-size: 26px;
+    .info-label {
       font-weight: 600;
-      margin-bottom: 10px;
+      color: #495057;
+      width: 130px;
     }
 
-    .user-card .header p {
-      font-size: 16px;
-      color: #f0f0f0;
-      font-weight: 300;
+    .info-value {
+      color: #212529;
     }
 
-    .user-card .content {
-      padding: 25px;
+    .logout-btn {
+      text-align: right;
     }
 
-    .user-card .content p {
-      margin-bottom: 15px;
-      font-size: 16px;
-      color: #333;
-    }
-
-    .user-card .content .label {
-      font-weight: bold;
-      color: #007bff;
-    }
-
-    .user-card .content .value {
-      color: #555;
-    }
-
-    .user-card .footer {
-      padding: 20px;
-      background-color: #f9f9f9;
-      text-align: center;
-      border-bottom-left-radius: 16px;
-      border-bottom-right-radius: 16px;
-    }
-
-    .user-card .footer .button {
-      padding: 12px 30px;
-      background-color: #007bff;
+    .btn-logout {
+      background-color: #dc3545;
       color: white;
-      font-weight: bold;
       border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.3s ease;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: background-color 0.3s;
     }
 
-    .user-card .footer .button:hover {
-      background-color: #0056b3;
-      transform: scale(1.05);
+    .btn-logout:hover {
+      background-color: #c82333;
     }
 
-    @media (max-width: 480px) {
-      .user-card {
-        max-width: 95%;
+    @media (max-width: 768px) {
+      .profile-header {
+        flex-direction: column;
+        text-align: center;
       }
 
-      .user-card .header h2 {
-        font-size: 22px;
+      .profile-header img {
+        margin-bottom: 20px;
       }
 
-      .user-card .header p {
-        font-size: 14px;
-      }
-
-      .user-card .content p {
-        font-size: 14px;
-      }
-
-      .user-card .footer .button {
+      .info-label {
         width: 100%;
+      }
+
+      .logout-btn {
+        text-align: center;
+        margin-top: 20px;
       }
     }
   </style>
 </head>
 <body>
-    <div class="navcon">
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">FASHION</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-          <form class="d-flex mx-auto my-2 my-lg-0" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search..." id="search">
-               <button class="btn btn-primary" type="submit" id="searchbutton">Search</button>
-        </form>
+   <div class="navbar-container">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">FASHION</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="users">
-                            <i class="fa-solid fa-circle-user"></i> Profile
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="like">
-                            <i class="fa-solid fa-heart"></i> Wishlist
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="carts">
-                            <i class="fa-solid fa-bag-shopping"></i> Cart
-                        </a>
-                    </li>
-                </ul>
-            </div>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarResponsive">
+        <div class="search-wrapper d-flex align-items-center mt-2 mt-lg-0">
+          <input class="form-control search-input" id="search" placeholder="Search for products..." />
+          <button class="btn search-btn" id="searchbutton">Search</button>
         </div>
-    </nav>
+
+        <ul class="navbar-nav ms-auto mt-3 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/users"><i class="fa-solid fa-user"></i> Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/like"><i class="fa-solid fa-heart"></i> Wishlist</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/carts"><i class="fa-solid fa-bag-shopping"></i> Cart</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="categories-bar px-2 " style="text-align:center">
+    <a href="/">Home</a>
+    <a href="/mencollection">Men</a>
+    <a href="/womencollection">Women</a>
+    <a href="/watchcoll">Watches</a>
+    <a href="/shoescoll">Shoes</a>
+    <a href="/accessoires">Accessories</a>
+   
+  </div>
+</div>
     
-    <div class="navbar-categories">
-        <div class="container">
-          <a href="">Home</a>
-          <a href="mencollection">Men</a>
-            <a href="womencollection">Women</a>
-            <a href="watchcoll">Watch</a>
-            <a href="shoescoll  ">Shoes</a>
-            <a href="accessoires">Other Products</a>
+
+
+  <div class="profile-page">
+    <div class="profile-header">
+      <img src="{% static 'src/lo.jpg' %}" alt="User Profile Picture">
+      <div>
+        <h4>{{ userde.0.username }}</h4>
+        <p>{{ userde.0.email }}</p>
+      </div>
+    </div>
+
+    <div class="profile-body">
+      <div class="row info-row">
+        <div class="col-md-3 info-label">Phone</div>
+        <div class="col-md-9 info-value">{{ userde.0.phone }}</div>
+      </div>
+      <div class="row info-row">
+        <div class="col-md-3 info-label">State</div>
+        <div class="col-md-9 info-value">{{ userde.0.state }}</div>
+      </div>
+      <div class="row info-row">
+        <div class="col-md-3 info-label">City</div>
+        <div class="col-md-9 info-value">{{ userde.0.city }}</div>
+      </div>
+      <div class="row info-row">
+        <div class="col-md-3 info-label">Address</div>
+        <div class="col-md-9 info-value">{{ userde.0.address }}</div>
+      </div>
+      <div class="row info-row">
+        <div class="col-md-3 info-label">Pincode</div>
+        <div class="col-md-9 info-value">{{ userde.0.pincode }}</div>
+      </div>
+
+      <div class="logout-btn mt-4">
+        <a href="/logout">
+          <button class="btn btn-logout">Log Out</button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+<footer style="background-color: #0e0e0e; color: #ccc; padding: 60px 20px 30px;">
+  <div class="container">
+    <div class="row gy-4 justify-content-between text-center text-lg-start">
+
+      <div class="col-12 col-md-6 col-lg-3">
+        <h3 class="text-white fw-bold mb-3" style="letter-spacing: 1px;">FASHION</h3>
+        <p style="font-size: 0.95rem; line-height: 1.7;">
+          Explore the latest trends and timeless fashion essentials. Designed with passion, worn with confidence.
+        </p>
+      </div>
+
+      <div class="col-6 col-md-3 col-lg-2">
+        <h5 class="text-white mb-3">Company</h5>
+        <ul class="list-unstyled">
+          <li><a href="about" class="text-decoration-none text-light d-block mb-2">About Us</a></li>
+          <li><a href="help" class="text-decoration-none text-light d-block mb-2">Help & Support</a></li>
+          <li><a href="term" class="text-decoration-none text-light d-block mb-2">Terms</a></li>
+          <li><a href="privacy" class="text-decoration-none text-light d-block mb-2">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-md-3 col-lg-3">
+        <h5 class="text-white mb-3">Contact</h5>
+        <p class="mb-2"><i class="fa-solid fa-phone me-2 text-white"></i> 025-025-0215</p>
+        <p><i class="fa-solid fa-envelope me-2 text-white"></i> fashion@gmail.com</p>
+      </div>
+
+    
+      <div class="col-12 col-md-6 col-lg-3">
+        <h5 class="text-white mb-3">Follow Us</h5>
+        <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
+          <a href="https://www.instagram.com" class="text-light fs-5"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com" class="text-light fs-5"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/login" class="text-light fs-5"><i class="fab fa-x-twitter"></i></a>
         </div>
-    </div>
-     </div>
-
-
-
-
- <div class="ap">
- <div class="user-card">
-    <div class="header">
-      <img src="{% static 'src/lo.jpg' %}" alt="User Profile Picture" />
-      <h2>{{userde.0.username}}</h2>
-      <p>{{userde.0.email}}</p>
-    </div>
-    <div class="content">
-      <p><span class="label">Phone:</span> <span class="value">{{userde.0.phone}}</span></p>
-      <p><span class="label">State:</span> <span class="value">{{userde.0.state}}</span></p>
-      <p><span class="label">City:</span> <span class="value">{{userde.0.city}}</span></p>
-      <p><span class="label">Address:</span> <span class="value">{{userde.0.address}}</span></p>
-      <p><span class="label">Pincode:</span> <span class="value">{{userde.0.pincode}}</span></p>
-    </div>
-    <div class="footer">
-      <a href="logout">
-              <button class="button">Log Out</button>
-      </a>
-    </div>
-  </div>
- </div>
-
-
-    <div class="downpart" style="margin-top: 4%;">
-      <div class="sc d-flex" style="margin-left: 30px; padding: 12px">
-          <p class="logo">FASHION</p>
       </div>
-      <div class="down">
-          <div class="infoserv">
-              <h3>Company</h3>
-              <div class="sa">
-                  <a href="about">
-                      <p>About Us</p>
-                  </a>
-                  <a href="help">
-                      <p>Help & Support</p>
-                  </a>
-                  <a href="term">
-                      <p>Terms & Conditions</p>
-                  </a>
-                  <a href="privacy">
-                      <p>Privacy Policy</p>
-                  </a>
-              </div>
-          </div>
 
-          <div class="contact">
-              <h3>Contact</h3>
-              <div class="sa">
-                  <div class="sso d-flex">
-                      <i class="fa-solid fa-phone"></i>
-                      <p>025-025-0215</p>
-                  </div>
-                  <div class="sso d-flex">
-                      <i class="fa-solid fa-envelope-open"></i>
-                      <p>fashion@gmail.com</p>
-                  </div>
-              </div>
-          </div>
+    </div>
 
-          <div class="social">
-              <h3>Follow Us</h3>
-              <div class="sa sss">
-                  <a href="https://www.instagram.com/accounts/login/?hl=en" style="text-decoration: none; color: white">
-                      <div class="sso d-flex">
-                          <i class="fa-brands fa-instagram"></i>
-                          <p>Instagram</p>
-                      </div>
-                  </a>
-                  <a href="https://www.facebook.com/" style="text-decoration: none; color: white">
-                      <div class="sso d-flex">
-                          <i class="fa-brands fa-facebook"></i>
-                          <p>Facebook</p>
-                      </div>
-                  </a>
-                  <a href="https://x.com/login" style="text-decoration: none; color: white">
-                      <div class="sso d-flex">
-                          <i class="fa-brands fa-twitter"></i>
-                          <p>Twitter</p>
-                      </div>
-                  </a>
-              </div>
-          </div>
-      </div>
+    <hr class="border-secondary my-4">
+
+    <div class="text-center" style="font-size: 0.85rem;">&copy; 2025 FASHION. All rights reserved.</div>
   </div>
-
-
+</footer>
 
 </body>
 </html>

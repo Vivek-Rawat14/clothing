@@ -26,54 +26,46 @@
 </script>
 </head>
 <body>
-    <div class="navcon">
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">FASHION</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-          <form class="d-flex mx-auto my-2 my-lg-0" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search..." id="search">
-               <button class="btn btn-primary" type="submit" id="searchbutton">Search</button>
-        </form>
+   <div class="navbar-container">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">FASHION</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
+      <div class="collapse navbar-collapse justify-content-between" id="navbarResponsive">
+        <div class="search-wrapper d-flex align-items-center mt-2 mt-lg-0">
+          <input class="form-control search-input" id="search" placeholder="Search for products..." />
+          <button class="btn search-btn" id="searchbutton">Search</button>
+        </div>
 
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="users">
-                            <i class="fa-solid fa-circle-user"></i> Profile
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="like">
-                            <i class="fa-solid fa-heart"></i> Wishlist
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="carts">
-                            <i class="fa-solid fa-bag-shopping"></i> Cart
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    
-    <div class="navbar-categories">
-        <div class="container">
-          <a href="">Home</a>
-          <a href="mencollection">Men</a>
-            <a href="womencollection">Women</a>
-            <a href="watchcoll">Watch</a>
-            <a href="shoescoll  ">Shoes</a>
-            <a href="accessoires">Other Products</a>
-        </div>
+        <ul class="navbar-nav ms-auto mt-3 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/users"><i class="fa-solid fa-user"></i> Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/like"><i class="fa-solid fa-heart"></i> Wishlist</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/carts"><i class="fa-solid fa-bag-shopping"></i> Cart</a>
+          </li>
+        </ul>
+      </div>
     </div>
-     </div>
+  </nav>
 
-
+  <div class="categories-bar px-2 " style="text-align:center">
+    <a href="/">Home</a>
+    <a href="/mencollection">Men</a>
+    <a href="/womencollection">Women</a>
+    <a href="/watchcoll">Watches</a>
+    <a href="/shoescoll">Shoes</a>
+    <a href="/accessoires">Accessories</a>
+   
+  </div>
+</div>
+    
 
   
 
@@ -104,67 +96,49 @@
       
       
 
-      <div class="downpart" style="margin-top: 4%;">
-        <div class="sc d-flex" style="margin-left: 30px; padding: 12px">
-            <p class="logo">FASHION</p>
+<footer style="background-color: #0e0e0e; color: #ccc; padding: 60px 20px 30px;">
+  <div class="container">
+    <div class="row gy-4 justify-content-between text-center text-lg-start">
+
+      <div class="col-12 col-md-6 col-lg-3">
+        <h3 class="text-white fw-bold mb-3" style="letter-spacing: 1px;">FASHION</h3>
+        <p style="font-size: 0.95rem; line-height: 1.7;">
+          Explore the latest trends and timeless fashion essentials. Designed with passion, worn with confidence.
+        </p>
+      </div>
+
+      <div class="col-6 col-md-3 col-lg-2">
+        <h5 class="text-white mb-3">Company</h5>
+        <ul class="list-unstyled">
+          <li><a href="about" class="text-decoration-none text-light d-block mb-2">About Us</a></li>
+          <li><a href="help" class="text-decoration-none text-light d-block mb-2">Help & Support</a></li>
+          <li><a href="term" class="text-decoration-none text-light d-block mb-2">Terms</a></li>
+          <li><a href="privacy" class="text-decoration-none text-light d-block mb-2">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-md-3 col-lg-3">
+        <h5 class="text-white mb-3">Contact</h5>
+        <p class="mb-2"><i class="fa-solid fa-phone me-2 text-white"></i> 025-025-0215</p>
+        <p><i class="fa-solid fa-envelope me-2 text-white"></i> fashion@gmail.com</p>
+      </div>
+
+    
+      <div class="col-12 col-md-6 col-lg-3">
+        <h5 class="text-white mb-3">Follow Us</h5>
+        <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
+          <a href="https://www.instagram.com" class="text-light fs-5"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com" class="text-light fs-5"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/login" class="text-light fs-5"><i class="fab fa-x-twitter"></i></a>
         </div>
-        <div class="down">
-            <div class="infoserv">
-                <h3>Company</h3>
-                <div class="sa">
-                    <a href="about">
-                        <p>About Us</p>
-                    </a>
-                    <a href="help">
-                        <p>Help & Support</p>
-                    </a>
-                    <a href="term">
-                        <p>Terms & Conditions</p>
-                    </a>
-                    <a href="privacy">
-                        <p>Privacy Policy</p>
-                    </a>
-                </div>
-            </div>
-  
-            <div class="contact">
-                <h3>Contact</h3>
-                <div class="sa">
-                    <div class="sso d-flex">
-                        <i class="fa-solid fa-phone"></i>
-                        <p>025-025-0215</p>
-                    </div>
-                    <div class="sso d-flex">
-                        <i class="fa-solid fa-envelope-open"></i>
-                        <p>fashion@gmail.com</p>
-                    </div>
-                </div>
-            </div>
-  
-            <div class="social">
-                <h3>Follow Us</h3>
-                <div class="sa sss">
-                    <a href="https://www.instagram.com/accounts/login/?hl=en" style="text-decoration: none; color: white">
-                        <div class="sso d-flex">
-                            <i class="fa-brands fa-instagram"></i>
-                            <p>Instagram</p>
-                        </div>
-                    </a>
-                    <a href="https://www.facebook.com/" style="text-decoration: none; color: white">
-                        <div class="sso d-flex">
-                            <i class="fa-brands fa-facebook"></i>
-                            <p>Facebook</p>
-                        </div>
-                    </a>
-                    <a href="https://x.com/login" style="text-decoration: none; color: white">
-                        <div class="sso d-flex">
-                            <i class="fa-brands fa-twitter"></i>
-                            <p>Twitter</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
+      </div>
+
     </div>
+
+    <hr class="border-secondary my-4">
+
+    <div class="text-center" style="font-size: 0.85rem;">&copy; 2025 FASHION. All rights reserved.</div>
+  </div>
+</footer>
 </body>
 </html>

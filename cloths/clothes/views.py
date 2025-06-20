@@ -192,7 +192,7 @@ def signup(req):
     
     return render(req,'signup.html')
 
-def userss(req):
+def userst(req):
     if 'user' not in req.session:
         return redirect('/login')
 

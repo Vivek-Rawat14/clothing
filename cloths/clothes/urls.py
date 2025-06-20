@@ -33,7 +33,7 @@ urlpatterns = [
     path('productshow/<int:Id>',views.productshow,name='productshow'),
     path('login',views.login),
     path('signup',views.signup),
-    path('users',views.userss),
+    path('users',views.userst),
     path('logout',views.logout),
     path('search/<str:item>/', views.search),
     path('addlikeitem/<int:Id>/', views.addlikeitem, name='addlikeitem'),
